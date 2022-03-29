@@ -31,10 +31,20 @@ public class Engine implements Runnable {
                 case 5 : exerciseFive();
                 case 6 : exerciseSix();
                 case 7 : exerciseSeven();
+                case 8:exerciseEight();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void exerciseEight() throws IOException {
+        int wantedId = Integer.parseInt(bufferedReader.readLine());
+        Employee wanted = entityManager.createQuery("select e from Employee e where e.id='"+wantedId+"'",Employee.class).getSingleResult();
+        System.out.printf("%s %s - %s\n",wanted.getFirstName(),wanted.getLastName(),wanted.getJobTitle());
+        wanted.getProjects().stream().sorted((a,b)->a.getName().compareTo(b.getName())).forEach(a->{
+            System.out.println(a.getName());
+        });
     }
 
     private void exerciseSeven() {
