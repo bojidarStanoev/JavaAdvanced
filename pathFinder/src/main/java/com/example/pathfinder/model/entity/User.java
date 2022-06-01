@@ -8,8 +8,8 @@ import java.util.Set;
 @Entity(name="users")
 public class User extends BaseEntity{
     @Column( nullable = false)
-    private String fullname;
-    @Column
+    private String fullName;
+    @Column(nullable = false,unique = true)
     private String username;
     @Column(nullable = true)
     private String password;
@@ -26,11 +26,11 @@ public class User extends BaseEntity{
     }
 
     public String fullname() {
-        return fullname;
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullname) {
+        this.fullName = fullname;
     }
 
     public String password() {

@@ -6,13 +6,14 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "routes")
 public class Route extends BaseEntity{
 @Column(unique = true,nullable = false)
     private String name;
-@Enumerated(EnumType.ORDINAL)
+@Enumerated(EnumType.STRING)
     private LevelEnum level;
 @Column(columnDefinition = "LONGTEXT")
-private String gpxCoordinate;
+private String gpxCoordinates;
 @ManyToOne
 private User author;
 @Column(columnDefinition = "TEXT")
@@ -36,12 +37,21 @@ private Set<Category> categories;
         this.level = level;
     }
 
-    public String gpxCoordinate() {
-        return gpxCoordinate;
+
+    public String gpxCoordinates() {
+        return gpxCoordinates;
     }
 
-    public void setGpxCoordinate(String gpxCoordinate) {
-        this.gpxCoordinate = gpxCoordinate;
+    public void setGpxCoordinates(String gpxCoordinates) {
+        this.gpxCoordinates = gpxCoordinates;
+    }
+
+    public Set<Category> categories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     public User author() {
